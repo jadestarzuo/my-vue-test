@@ -4,30 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>购物车</title>
+    <title>购物车render</title>
   </head>
   <body>
     <!-- 宿主文件 -->
     <div id="app">
-      <h2 v-once :title="title">
-        <!-- 插值文本 -->
-        {{title}}
-      </h2>
-      <p>
-        <input type="text" v-model="course" v-on:keydown.enter="addCourse" />
-        <button @click="addCourse">新增</button>
-      </p>
-      <p v-if="courses.length == 0"> 没有课程信息 </p>
-      <!-- 列表渲染-->
-      <!-- <div v-for="c in courses" :key="c" :class="{active: selectedCourse === c}" @click="selectedCourse = c"> -->
-      <div v-else
-        v-for="c in courses"
-        :key="c"
-        :style="{backgroundColor: (selectedCourse === c ? '#ddd' : 'transparent')}"
-        @click="selectedCourse = c"
-      >
-        <div>{{ c }}</div>
-      </div>
     </div>
     <script src="vue.js"></script>
     <script>
@@ -50,8 +31,12 @@
             this.course = "";
           },
         },
-      });
-      // app.title = '1111'
+        render(){
+          with(this){
+            return _c('div',{attrs:{"id":"app"}},[_m(0),_v(" "),_c('p',[_c('input',{directives:[{name:"model",rawName:"v-model",value:(course),expression:"course"}],attrs:{"type":"text"},domProps:{"value":(course)},on:{"keydown":function($event){if(!$event.type.indexOf('key')&&_k($event.keyCode,"enter",13,$event.key,"Enter"))return null;return addCourse($event)},"input":function($event){if($event.target.composing)return;course=$event.target.value}}}),_v(" "),_c('button',{on:{"click":addCourse}},[_v("新增")])]),_v(" "),(courses.length == 0)?_c('p',[_v(" 没有课程信息 ")]):_l((courses),function(c){return _c('div',{key:c,style:({backgroundColor: (selectedCourse === c ? '#ddd' : 'transparent')}),on:{"click":function($event){selectedCourse = c}}},[_c('div',[_v(_s(c))])])})],2)
+          }
+        }
+      })
     </script>
 
     <style>
